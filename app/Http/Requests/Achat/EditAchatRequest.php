@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Produit;
-
-
+namespace App\Http\Requests\Achat;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class CreateProduitRequest extends FormRequest
+class EditAchatRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,29 +23,23 @@ class CreateProduitRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
+    { 
         return [
-            'nom' => 'required|string|max:255',
-            'image' => 'required|string',
-            'prixU' => 'required|numeric',
-            'quantitéseuil' => 'required|numeric',
-            'etat' => ['required', 'in:en stock,rupture,critique,en cours,terminé'], // Utilisation de 'in' pour le type enum
-            'categorie_id' => 'required|integer',
+           
+            'prixachat' => 'required|numeric',
+           
         ];
     }
-    
+
     public function messages()
     {
         return [
-            'nom.required' => 'Le champ nom est requis.',
-            'image.required' => 'Le champ image est requis.',
-            'prixU.numeric' => 'Le champ prixU doit être un nombre.',
-            'quantitéseuil.numeric' => 'Le champ quantitéseuil doit être un nombre.',
-            'etat.in' => 'La valeur du champ état n\'est pas valide.',
-            'categorie_id.integer' => 'Le champ categorie_id doit être un entier.'
+      
+       
+        'prixU.numeric' => 'Le champ prixU doit être un nombre.',
+      
         ];
     }
-    
 
     protected function failedValidation(Validator $validator)
     {
@@ -57,5 +49,4 @@ class CreateProduitRequest extends FormRequest
         // Retournez les erreurs dans la réponse JSON
         throw new HttpResponseException(response()->json(['errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
     }
-        
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+
 use Exception;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 
@@ -68,10 +70,10 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function refresh()
-    {
-        return $this->respondWithToken(auth()->refresh());
-    }
+    // public function refresh()
+    // {
+    //     return $this->respondWithToken(auth()->refresh());
+    // }
 
     /**
      * Get the token array structure.

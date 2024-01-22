@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('nom');
             $table->string('image');
             $table->integer('prixU');
-            $table->integer('quantité');
+            $table->integer('quantitéseuil');
+            $table->enum('etat', ['en stock', 'rupture','critique','en cours','terminé'])->default('en stock');
             $table->foreignIdFor(Categorie::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

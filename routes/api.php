@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AchatController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\CategorieController;
@@ -33,9 +34,10 @@ Route::get('/login', function(){
 // Tous les users peuvent se connecter 
 Route::group(['middleware' => 'api'], function ($router) {
 Route::post('logout', [AuthController::class, 'logout']);
-Route::post('refresh', [AuthController::class, 'refresh']);
+// Route::post('refresh', [AuthController::class, 'refresh']);
   
 });
+
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
@@ -67,3 +69,15 @@ Route::delete('tarification/supprimer/{id}', [TarificationController::class, 'de
 Route::get('tarification/lister', [TarificationController::class, 'index']);
 //afficher un tarification
 Route::get('tarification/detail/{id}', [TarificationController::class, 'show']);
+
+
+//ajouter Achat
+Route::post('achat/create', [AchatController::class, 'store']);
+//modifier  achat
+ Route::put('achat/edit/{id}', [AchatController::class, 'edit']);
+//supprimer  achat
+Route::delete('achat/supprimer/{id}', [AchatController::class, 'destroy']);
+//lister les achats
+Route::get('achat/lister', [AchatController::class, 'index']);
+//afficher achat
+Route::get('achat/detail/{id}', [AchatController::class, 'show']);

@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('tarifications', function (Blueprint $table) {
             $table->id();
-            $table->number('prixactuel');
+            $table->integer('prixactuel');
             $table->foreignIdFor(Produit::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
