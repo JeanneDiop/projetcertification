@@ -1,0 +1,97 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Exception;
+use App\Models\Categorie;
+use Illuminate\Http\Request;
+use App\Http\Requests\Categorie\EditCategorieRequest;
+use App\Http\Requests\Categorie\CreateCategorieRequest;
+
+class CategorieController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(CreateCategorieRequest $request)
+    {
+        {
+            {
+                try {
+                  $produit = new Categorie();
+                  $produit->nom = $request->nom;
+                  $produit->save();
+            
+                  return response()->json([
+                    'status_code' => 200,
+                    'status_message' => 'categorie a été ajouté avec succés',
+                    'data' => $produit
+                  ]);
+                } catch (Exception $e) {
+                  return response()->json($e);
+                }
+              }
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Categorie $categorie)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+   
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(EditCategorieRequest $request,$id)
+    {
+        
+            
+                try {
+                  $produit = Categorie::find($id);
+                  $produit->nom = $request->nom;
+                  $produit->save();
+            
+                  return response()->json([
+                    'status_code' => 200,
+                    'status_message' => 'categorie a été modifié avec succés',
+                    'data' => $produit
+                  ]);
+                } catch (Exception $e) {
+                  return response()->json($e);
+                }
+    }
+        
+    
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Categorie $categorie)
+    {
+        //
+    }
+}

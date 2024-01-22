@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,8 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('etat', ['actif', 'inactif'])->default('actif');
             $table->string('adresse');
-            $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreignIdFor(Role::class)->constrained()->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
