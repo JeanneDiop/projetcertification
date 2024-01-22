@@ -30,13 +30,15 @@ class AuthController extends Controller
      */
     public function login()
     {
+        $email=request(['email']);
+        $user=User::where('email',$email['email'])->first();    
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+        return $this->respondWithToken($token,$user);
     }
 
     /**
@@ -44,10 +46,10 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function me()
-    {
-        return response()->json(auth()->user());
-    }
+    // public function personneconnecter()
+    // {
+    //     return response()->json(auth()->user());
+    // }
 
     /**
      * Log the user out (Invalidate the token).
@@ -78,9 +80,10 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondWithToken($token)
+    protected function respondWithToken($token,$user )
     {
         return response()->json([
+           'user'=>$user,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
