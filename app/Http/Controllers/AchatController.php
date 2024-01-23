@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Achat;
 use Illuminate\Http\Request;
 use App\Http\Requests\Achat\EditAchatRequest;
+use App\Http\Requests\Achat\CreateAchatRequest;
 
 class AchatController extends Controller
 {
@@ -32,7 +33,7 @@ class AchatController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateAchatRequest $request)
     {
         {
             try {

@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AchatController;
+use App\Http\Controllers\VenteController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\CategorieController;
@@ -93,3 +95,27 @@ Route::post('produitachat/create', [ProduitAchatController::class, 'store']);
 Route::get('produitachat/lister', [ProduitAchatController::class, 'index']);
 //afficher produitachat
 Route::get('produitachat/detail/{id}', [ProduitAchatController::class, 'show']);
+
+
+//ajouter Vente
+Route::post('vente/create', [VenteController::class, 'store']);
+//modifier  vente
+ Route::put('vente/edit/{id}', [VenteController::class, 'edit']);
+// //supprimer  vente
+// Route::delete('achat/supprimer/{id}', [VenteController::class, 'destroy']);
+//lister les ventes
+Route::get('vente/lister', [VenteController::class, 'index']);
+//afficher vente
+Route::get('vente/detail/{id}', [VenteController::class, 'show']);
+
+
+//ajouter Client
+Route::post('client/create', [ClientController::class, 'store']);
+//modifier  client
+ Route::put('client/edit/{id}', [ClientController::class, 'edit']);
+//supprimer  client
+Route::delete('client/supprimer/{id}', [ClientController::class, 'destroy']);
+//lister les cients
+Route::get('client/lister', [ClientController::class, 'index']);
+//afficher client
+Route::get('client/detail/{id}', [ClientController::class, 'show']);
