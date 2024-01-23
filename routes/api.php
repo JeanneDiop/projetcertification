@@ -6,6 +6,7 @@ use App\Http\Controllers\AchatController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ProduitAchatController;
 use App\Http\Controllers\TarificationController;
 
 /*
@@ -81,3 +82,14 @@ Route::delete('achat/supprimer/{id}', [AchatController::class, 'destroy']);
 Route::get('achat/lister', [AchatController::class, 'index']);
 //afficher achat
 Route::get('achat/detail/{id}', [AchatController::class, 'show']);
+
+//ajouter Produit_Achat
+Route::post('produitachat/create', [ProduitAchatController::class, 'store']);
+//modifier  produitachat
+ Route::put('produitachat/edit/{id}', [ProduitAchatController::class, 'edit']);
+// supprimer  produitachat
+// Route::delete('produitachat/supprimer/{id}', [ProduitAchatController::class, 'destroy']);
+//lister les produitachats
+Route::get('produitachat/lister', [ProduitAchatController::class, 'index']);
+//afficher produitachat
+Route::get('produitachat/detail/{id}', [ProduitAchatController::class, 'show']);

@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Achat;
+use App\Models\Produit;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -11,8 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('produit__achats', function (Blueprint $table) {
+        Schema::create('produit_achats', function (Blueprint $table) {
             $table->id();
+            $table->string('quantité_achat');
+            $table->foreignIdFor(Produit::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Achat::class)->constrained()->onDelete('cascade');
+          
             $table->timestamps();
         });
     }
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('produit__achats');
+        Schema::dropIfExists('produit_achats');
     }
 };
