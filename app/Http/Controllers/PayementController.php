@@ -24,7 +24,7 @@ class PayementController extends Controller
         } catch (Exception $e) {
           return response()->json($e);
         }
-      }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -71,7 +71,7 @@ class PayementController extends Controller
     // }
     public function store(CreatePayementRequest $request)
     {
-        {
+        
             try {
               $payement = new Payement();
               $payement->vente_id= $request->vente_id;
@@ -88,7 +88,7 @@ class PayementController extends Controller
             } catch (Exception $e) {
               return response()->json($e);
             }
-          }
+          
     }
 
 
@@ -129,7 +129,7 @@ class PayementController extends Controller
           return response()->json($e);
         }
       
-        }
+    }
     /**
      * Update the specified resource in storage.
      */
