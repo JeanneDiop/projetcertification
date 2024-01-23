@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AchatController;
 use App\Http\Controllers\VenteController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\FactureController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\PayementController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProduitAchatController;
 use App\Http\Controllers\TarificationController;
@@ -48,6 +50,10 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('categorie/create', [CategorieController::class, 'store']);
 //modifier categorie
 Route::put('categorie/edit/{id}', [CategorieController::class, 'update']);
+   //lister les categories
+   Route::get('categorie/lister', [CategorieController::class, 'index']);
+   //afficher un categorie
+   Route::get('categorie/detail/{id}', [CategorieController::class, 'show']);
 
 
 //ajouter Produit
@@ -119,3 +125,27 @@ Route::delete('client/supprimer/{id}', [ClientController::class, 'destroy']);
 Route::get('client/lister', [ClientController::class, 'index']);
 //afficher client
 Route::get('client/detail/{id}', [ClientController::class, 'show']);
+
+
+//ajouter payement
+Route::post('payement/create', [PayementController::class, 'store']);
+//modifier  payement
+ Route::put('payement/edit/{id}', [PayementController::class, 'edit']);
+//supprimer  payement
+Route::delete('payement/supprimer/{id}', [PayementController::class, 'destroy']);
+//lister les payements
+Route::get('payement/lister', [PayementController::class, 'index']);
+//afficher payement
+Route::get('payement/detail/{id}', [PayementController::class, 'show']);
+
+
+//ajouter facture
+Route::post('facture/create', [FactureController::class, 'store']);
+//modifier  facture
+ Route::put('facture/edit/{id}', [FactureController::class, 'edit']);
+//supprimer  facture
+Route::delete('facture/supprimer/{id}', [FactureController::class, 'destroy']);
+//lister les factures
+Route::get('facture/lister', [FactureController::class, 'index']);
+//afficher facture
+Route::get('facture/detail/{id}', [FactureController::class, 'show']);

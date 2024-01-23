@@ -15,7 +15,15 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+      try {
+        return response()->json([
+          'status_code' => 200,
+          'status_message' => 'tous les categories ont été recupéré',
+          'data' => Categorie::all(),
+        ]);
+      } catch (Exception $e) {
+        return response()->json($e);
+      }
     }
 
     /**
@@ -53,10 +61,16 @@ class CategorieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categorie $categorie)
+    public function show(string $id)
     {
-        //
-    }
+      try {
+          $categorie = Categorie::findOrFail($id);
+  
+          return response()->json($categorie);
+      } catch (Exception) {
+          return response()->json(['message' => 'Désolé, pas de categorie trouvé.'], 404);
+      }
+  }
 
     /**
      * Show the form for editing the specified resource.

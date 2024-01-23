@@ -24,5 +24,10 @@ class Vente extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function payement()
+    {
+        return $this->hasMany(Payement::class);
+    }
 }
 
